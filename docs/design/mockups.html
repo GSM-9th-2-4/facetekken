@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FaceTekken — UI Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Chakra+Petch:wght@600;700&family=Dela+Gothic+One&family=Inter:wght@500;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#07080c;--bg-1:#11131b;--bg-2:#1b1f2b;--steel:#8a93a6;--text:#f2f4f8;
+  --health:#ffd23f;--health-recover:#f5f5f5;--damage-ghost:#ff6b35;--rage:#ff2a3d;
+  --heat:#b04bff;--heat-glow:#ff4bd8;--p1:#2f8cff;--p2:#ff3b5c;--counter:#ff3b30;--punish:#ffb000;
+  --chamfer:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg-0);color:var(--text);font-family:Inter,system-ui,sans-serif}
+header{display:flex;gap:8px;align-items:center;padding:14px 20px;border-bottom:1px solid #8a93a633;flex-wrap:wrap}
+header h1{font-family:Anton;font-size:28px;letter-spacing:.04em;margin-right:16px}
+header h1 span{color:var(--heat)}
+.tab{font-family:Oswald;font-weight:600;text-transform:uppercase;letter-spacing:.06em;background:var(--bg-2);color:var(--steel);border:0;padding:8px 14px;cursor:pointer;clip-path:var(--chamfer)}
+.tab.on{background:var(--heat);color:#fff}
+.stage{width:min(1280px,96vw);aspect-ratio:16/9;margin:20px auto;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 85%,#2a2f45 0,#0c0e16 60%,#05060a 100%);border:1px solid #8a93a633}
+.screen{position:absolute;inset:0;display:none}
+.screen.on{display:block}
+.floor{position:absolute;left:-10%;right:-10%;bottom:0;height:38%;background:repeating-linear-gradient(90deg,#ffffff08 0 2px,transparent 2px 80px),linear-gradient(#1a1e2c,#0a0b10);transform:perspective(500px) rotateX(55deg);transform-origin:bottom}
+/* face placeholder */
+.face{background:radial-gradient(circle at 50% 42%,#e9b892 0 34%,transparent 35%),radial-gradient(circle at 50% 100%,#3b4258 0 46%,transparent 47%),#252a3a;position:relative}
+.face::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 41% 40%,#222 0 2.2%,transparent 2.6%),radial-gradient(circle at 59% 40%,#222 0 2.2%,transparent 2.6%),radial-gradient(ellipse at 50% 52%,#b4785a 0 5%,transparent 5.5%)}
+/* HUD */
+.hud{position:absolute;left:0;right:0;top:0;height:20%;display:grid;grid-template-columns:9% 1fr 12% 1fr 9%;align-items:start;padding:1.6% 2%;gap:1%}
+.portrait{aspect-ratio:1;border:4px solid var(--p1);clip-path:var(--chamfer)}
+.portrait.p2{border-color:var(--p2)}
+.side{display:flex;flex-direction:column;gap:6px}
+.side.right{align-items:flex-end}
+.name{font-family:Oswald;font-weight:600;font-size:clamp(10px,1.4vw,18px);letter-spacing:.08em}
+.bar{width:100%;height:clamp(10px,2.4vw,30px);background:#000a;border:1px solid #fff3;transform:skewX(-12deg);position:relative;overflow:hidden}
+.right .bar{transform:skewX(12deg)}
+.bar i{position:absolute;top:0;bottom:0}
+.heat{width:78%;height:clamp(4px,.7vw,9px);background:#000a;border:1px solid #b04bff66;transform:skewX(-12deg);position:relative}
+.right .heat{transform:skewX(12deg)}
+.heat i{position:absolute;inset:0;background:linear-gradient(90deg,var(--heat),var(--heat-glow));box-shadow:0 0 12px var(--heat-glow)}
+.timer{display:flex;flex-direction:column;align-items:center}
+.timer b{font-family:"Chakra Petch";font-size:clamp(20px,4.4vw,58px);background:var(--bg-1);clip-path:polygon(18% 0,82% 0,100% 50%,82% 100%,18% 100%,0 50%);padding:0 18%;border:1px solid #fff2}
+.pips{font-size:clamp(8px,1vw,14px);letter-spacing:6px;margin-top:4px}
+.combo{position:absolute;left:3%;top:34%;font-family:Anton;font-size:clamp(20px,4.4vw,60px);line-height:.9;transform:skewX(-8deg)}
+.combo small{display:block;font-family:"Chakra Petch";font-size:.4em;color:var(--health)}
+.call{position:absolute;right:4%;font-family:Anton;font-size:clamp(16px,3vw,44px);transform:skewX(-8deg);letter-spacing:.04em}
+.fighter{position:absolute;bottom:14%;width:9%;aspect-ratio:1/3}
+.fighter .h{width:62%;aspect-ratio:1;border-radius:50%;margin:0 auto}
+.fighter .b{width:100%;height:42%;background:linear-gradient(#3a4260,#1d2234);border-radius:30% 30% 12% 12%;margin-top:4%}
+.fighter .l{width:70%;height:40%;margin:0 auto;background:linear-gradient(90deg,#20263a 0 44%,transparent 44% 56%,#20263a 56%)}
+.aura-heat{filter:drop-shadow(0 0 14px var(--heat)) drop-shadow(0 0 30px var(--heat-glow))}
+.aura-rage{filter:drop-shadow(0 0 14px var(--rage))}
+/* panels */
+.panel{background:var(--bg-1);border:1px solid #8a93a655;clip-path:var(--chamfer);padding:2%}
+.title{font-family:Oswald;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12px,1.6vw,22px)}
+.btn{display:inline-block;font-family:Oswald;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:.6em 1.2em;background:var(--bg-2);clip-path:var(--chamfer);border-left:4px solid var(--heat);font-size:clamp(10px,1.2vw,16px);margin:.3em .3em 0 0}
+.btn.primary{background:var(--heat)}
+.err{background:#ff2a3d22;border-left:4px solid var(--rage);padding:.5em 1em;font-size:clamp(9px,1vw,14px);margin-top:.6em}
+.big{font-family:Anton;transform:skewX(-8deg);display:inline-block}
+.sfx{font-family:"Dela Gothic One";color:#a76bff;opacity:.55;position:absolute;font-size:clamp(30px,8vw,120px);transform:rotate(-12deg)}
+.mono{font-family:"Chakra Petch";font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <h1>FACE<span>TEKKEN</span> · UI MOCKUPS</h1>
+  <button class="tab on" data-s="hud">Fight HUD</button>
+  <button class="tab" data-s="lab">Face Lab</button>
+  <button class="tab" data-s="select">Character Select</button>
+  <button class="tab" data-s="vs">VS</button>
+  <button class="tab" data-s="result">Results</button>
+  <button class="tab" data-s="practice">Practice</button>
+</header>
+
+<div class="stage">
+  <!-- FIGHT HUD -->
+  <section class="screen on" id="hud">
+    <div class="floor"></div>
+    <div class="fighter aura-heat" style="left:36%"><div class="h face"></div><div class="b"></div><div class="l"></div></div>
+    <div class="fighter aura-rage" style="left:54%;transform:scaleX(-1)"><div class="h face"></div><div class="b" style="background:linear-gradient(#5a2a36,#2a1620)"></div><div class="l"></div></div>
+    <div class="hud">
+      <div class="portrait face"></div>
+      <div class="side">
+        <div class="name">P1 · KANG</div>
+        <div class="bar"><i style="left:0;width:82%;background:var(--health)"></i><i style="left:82%;width:6%;background:var(--health-recover)"></i></div>
+        <div class="heat"><i style="right:35%"></i></div>
+      </div>
+      <div class="timer"><b>42</b><div class="pips"><span style="color:var(--p1)">●</span>○ ○<span style="color:var(--p2)">●</span></div></div>
+      <div class="side right">
+        <div class="name">SEO · P2</div>
+        <div class="bar"><i style="right:0;width:21%;background:var(--rage);box-shadow:0 0 14px var(--rage)"></i><i style="right:21%;width:9%;background:var(--damage-ghost)"></i></div>
+        <div class="heat" style="opacity:.35"><i style="right:100%"></i></div>
+      </div>
+      <div class="portrait p2 face"></div>
+    </div>
+    <div class="combo">12 HITS<small>68 DAMAGE</small></div>
+    <div class="call" style="top:34%;color:var(--counter)">COUNTER</div>
+    <div class="call" style="top:44%;color:var(--punish)">PUNISH</div>
+    <div class="call" style="top:54%;color:var(--heat)">HEAT</div>
+  </section>
+
+  <!-- FACE LAB -->
+  <section class="screen" id="lab" style="padding:2.5%">
+    <div class="title" style="font-size:clamp(16px,2.4vw,34px);margin-bottom:2%">FACE LAB</div>
+    <div style="display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:2%;height:66%">
+      <div class="panel" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:2px dashed #8a93a6">
+        <div class="title">Drop a photo</div>
+        <p style="color:var(--steel);font-size:clamp(9px,1vw,14px);margin:.6em 0">Front-facing, good light. Stays on this device.</p>
+        <div><span class="btn primary">Upload photo</span><span class="btn">Use webcam</span></div>
+      </div>
+      <div class="panel" style="position:relative">
+        <div class="title">Detected</div>
+        <div class="face" style="position:absolute;inset:16% 10% 8%;border-radius:4px"></div>
+        <div style="position:absolute;left:33%;top:26%;width:34%;height:48%;border:3px solid var(--p1);box-shadow:0 0 12px var(--p1)"></div>
+        <div class="err" style="position:absolute;bottom:3%;left:3%;right:3%">Turn a little more toward the camera for best results.</div>
+      </div>
+      <div class="panel" style="text-align:center">
+        <div class="title">Preview</div>
+        <div class="face" style="width:62%;aspect-ratio:1;border-radius:50%;margin:8% auto;box-shadow:0 0 30px #b04bff55"></div>
+        <span class="btn">Natural</span><span class="btn primary">Cartoon</span>
+        <div><span class="btn primary" style="border-left-color:var(--health)">Save to slot</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1.4%;margin-top:2%">
+      <div class="face" style="width:7%;aspect-ratio:1;border-radius:50%;border:3px solid var(--p1)"></div>
+      <div class="face" style="width:7%;aspect-ratio:1;border-radius:50%"></div>
+      <div class="face" style="width:7%;aspect-ratio:1;border-radius:50%"></div>
+      <div style="width:7%;aspect-ratio:1;border-radius:50%;border:2px dashed var(--steel);display:grid;place-items:center;font-size:2vw;color:var(--steel)">+</div>
+      <div style="width:7%;aspect-ratio:1;border-radius:50%;border:2px dashed #8a93a655"></div>
+      <div style="width:7%;aspect-ratio:1;border-radius:50%;border:2px dashed #8a93a655"></div>
+      <div style="width:7%;aspect-ratio:1;border-radius:50%;border:2px dashed #8a93a655"></div>
+      <div style="width:7%;aspect-ratio:1;border-radius:50%;border:2px dashed #8a93a655"></div>
+    </div>
+  </section>
+
+  <!-- CHARACTER SELECT -->
+  <section class="screen" id="select">
+    <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:2%;padding:2.5%">
+      <div class="panel" style="border-left:6px solid var(--p1);text-align:center">
+        <div class="title" style="color:var(--p1)">Player 1</div>
+        <div class="fighter" style="position:relative;left:auto;bottom:auto;width:34%;margin:6% auto"><div class="h face"></div><div class="b"></div><div class="l"></div></div>
+        <div class="title">KANG</div>
+        <div style="display:flex;gap:6px;justify-content:center;margin-top:4%"><div class="face" style="width:16%;aspect-ratio:1;border-radius:50%;border:3px solid var(--p1)"></div><div class="face" style="width:16%;aspect-ratio:1;border-radius:50%"></div></div>
+        <div class="big" style="font-size:clamp(20px,3vw,44px);color:var(--health);margin-top:4%">READY</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4%;align-content:center">
+        <div class="panel" style="aspect-ratio:1;border:3px solid var(--p1)"><div class="title">KANG</div><div style="color:var(--steel);font-size:clamp(8px,.9vw,12px)">All-rounder · Karate</div></div>
+        <div class="panel" style="aspect-ratio:1;border:3px solid var(--p2)"><div class="title">SEO</div><div style="color:var(--steel);font-size:clamp(8px,.9vw,12px)">Kicks · Taekwondo</div></div>
+        <div class="panel" style="aspect-ratio:1"><div class="title">BAE</div><div style="color:var(--steel);font-size:clamp(8px,.9vw,12px)">Grappler · Wrestling</div></div>
+        <div class="panel" style="aspect-ratio:1"><div class="title">YUN</div><div style="color:var(--steel);font-size:clamp(8px,.9vw,12px)">Speed · Muay Thai</div></div>
+      </div>
+      <div class="panel" style="border-right:6px solid var(--p2);text-align:center">
+        <div class="title" style="color:var(--p2)">Player 2</div>
+        <div class="fighter" style="position:relative;left:auto;bottom:auto;width:34%;margin:6% auto;transform:scaleX(-1)"><div class="h face"></div><div class="b" style="background:linear-gradient(#5a2a36,#2a1620)"></div><div class="l"></div></div>
+        <div class="title">SEO</div>
+        <div style="color:var(--steel);font-size:clamp(9px,1vw,13px);margin-top:4%">Choose face slot ◀ ▶</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VS -->
+  <section class="screen" id="vs">
+    <div style="position:absolute;inset:0;background:linear-gradient(115deg,#0f3b80 0 49.6%,#fff 49.6% 50.4%,#7a1024 50.4%)"></div>
+    <div class="face" style="position:absolute;left:8%;top:14%;width:30%;aspect-ratio:1;border-radius:50%;border:6px solid var(--p1);box-shadow:0 0 50px #2f8cff"></div>
+    <div class="face" style="position:absolute;right:8%;bottom:14%;width:30%;aspect-ratio:1;border-radius:50%;border:6px solid var(--p2);box-shadow:0 0 50px #ff3b5c"></div>
+    <div class="big" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) skewX(-10deg);font-size:clamp(60px,14vw,200px);-webkit-text-stroke:4px #000;text-shadow:0 0 40px #b04bff">VS</div>
+    <div class="title" style="position:absolute;left:8%;bottom:8%;font-size:clamp(16px,2.6vw,36px)">KANG</div>
+    <div class="title" style="position:absolute;right:8%;top:8%;font-size:clamp(16px,2.6vw,36px)">SEO</div>
+    <div class="mono" style="position:absolute;bottom:3%;right:4%;color:#fffa;letter-spacing:.3em;text-shadow:0 1px 4px #000">STAGE · ROOFTOP AT NIGHT</div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="screen" id="result">
+    <div class="floor"></div>
+    <div class="sfx" style="left:4%;top:8%">ゴゴゴ</div>
+    <div class="sfx" style="right:6%;bottom:20%">ドドド</div>
+    <div class="fighter aura-heat" style="left:20%;width:14%;transform:rotate(-6deg)"><div class="h face"></div><div class="b"></div><div class="l"></div></div>
+    <div class="face" style="position:absolute;right:4%;top:24%;width:24%;aspect-ratio:1;clip-path:var(--chamfer);border:6px solid var(--p1)"></div>
+    <div class="big" style="position:absolute;left:36%;top:10%;font-size:clamp(36px,6.5vw,100px);color:var(--health);-webkit-text-stroke:3px #000">PERFECT</div>
+    <div class="title" style="position:absolute;left:36%;top:34%;font-size:clamp(14px,2.2vw,30px)">KANG WINS</div>
+    <div style="position:absolute;left:36%;bottom:10%"><span class="btn primary">Rematch</span><span class="btn">Character select</span><span class="btn">Menu</span></div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section class="screen" id="practice">
+    <div class="floor"></div>
+    <div class="fighter" style="left:38%"><div class="h face"></div><div class="b"></div><div class="l"></div></div>
+    <div class="fighter" style="left:52%;transform:scaleX(-1);outline:2px dashed #4dd2ff"><div class="h face" style="outline:2px solid #ff3b30"></div><div class="b"></div><div class="l"></div></div>
+    <div class="panel mono" style="position:absolute;left:2%;top:6%;width:16%;font-size:clamp(9px,1.1vw,15px);line-height:1.7">
+      <div class="title" style="font-size:clamp(9px,1.1vw,15px)">Input</div>
+      ↘ 1<br>↗ 4<br>· 1<br>· 1, 2<br>⇣ (SS) 2<br>→ → <br>↙ (guard)
+    </div>
+    <div class="panel mono" style="position:absolute;right:2%;top:6%;width:24%;font-size:clamp(9px,1.1vw,15px);line-height:1.7">
+      <div class="title" style="font-size:clamp(9px,1.1vw,15px)">Last move · uf+4</div>
+      startup i15 · active 3 · rec 30<br>block -13 · hit LAUNCH<br>
+      <span style="font-size:2.4em;color:var(--rage)">-13</span> <span style="color:var(--rage)">PUNISHABLE</span>
+    </div>
+    <div style="position:absolute;bottom:3%;left:2%"><span class="btn primary">Hitboxes: ON</span><span class="btn">Dummy: Guard all</span><span class="btn">● Record</span><span class="btn">▶ Play</span></div>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===t.dataset.s));
+});
+</script>
+</body>
+</html>

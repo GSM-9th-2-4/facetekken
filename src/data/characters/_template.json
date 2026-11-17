@@ -1,0 +1,397 @@
+{
+  "id": "kang",
+  "name": "KANG",
+  "style": "karate-boxing",
+  "baseModel": "models/ubc_superhero_male.glb",
+  "faceAnchor": {
+    "bone": "head",
+    "offset": [
+      0,
+      0.03,
+      0.085
+    ],
+    "scale": 0.112,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  "walkSpeed": {
+    "forward": 1.2,
+    "backward": 1.0
+  },
+  "moves": [
+    {
+      "id": "1",
+      "input": "1",
+      "hitLevel": [
+        "h"
+      ],
+      "damage": [
+        5
+      ],
+      "startup": 10,
+      "active": 2,
+      "recovery": 17,
+      "onBlock": 1,
+      "onHit": 8,
+      "onCounter": 8,
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "hand_L",
+          "radius": 0.08,
+          "length": 0.2
+        }
+      ],
+      "properties": [],
+      "reaction": {
+        "hit": "stagger_high",
+        "counter": "stagger_high",
+        "airborne": "juggle_light"
+      },
+      "cancelWindow": [
+        12,
+        26
+      ],
+      "next": [
+        "1_2"
+      ],
+      "anim": "kang_1"
+    },
+    {
+      "id": "1_2",
+      "input": "1,2",
+      "hitLevel": [
+        "h"
+      ],
+      "damage": [
+        12
+      ],
+      "startup": 10,
+      "active": 2,
+      "recovery": 20,
+      "onBlock": -3,
+      "onHit": 6,
+      "onCounter": 6,
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "hand_R",
+          "radius": 0.08,
+          "length": 0.22
+        }
+      ],
+      "properties": [],
+      "reaction": {
+        "hit": "stagger_high",
+        "counter": "stagger_high",
+        "airborne": "juggle_light"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_1_2"
+    },
+    {
+      "id": "df1",
+      "input": "df+1",
+      "hitLevel": [
+        "m"
+      ],
+      "damage": [
+        13
+      ],
+      "startup": 13,
+      "active": 2,
+      "recovery": 22,
+      "onBlock": -1,
+      "onHit": 4,
+      "onCounter": 4,
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "hand_L",
+          "radius": 0.09,
+          "length": 0.25
+        }
+      ],
+      "properties": [],
+      "reaction": {
+        "hit": "stagger_mid",
+        "counter": "stagger_mid",
+        "airborne": "juggle_light"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_df1"
+    },
+    {
+      "id": "d4",
+      "input": "d+4",
+      "hitLevel": [
+        "l"
+      ],
+      "damage": [
+        12
+      ],
+      "startup": 12,
+      "active": 3,
+      "recovery": 26,
+      "onBlock": -13,
+      "onHit": -2,
+      "onCounter": -2,
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "foot_R",
+          "radius": 0.09,
+          "length": 0.3
+        }
+      ],
+      "properties": [],
+      "reaction": {
+        "hit": "stagger_low",
+        "counter": "stagger_low",
+        "airborne": "juggle_light"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_d4"
+    },
+    {
+      "id": "uf4",
+      "input": "uf+4",
+      "hitLevel": [
+        "m"
+      ],
+      "damage": [
+        15
+      ],
+      "startup": 15,
+      "active": 3,
+      "recovery": 30,
+      "onBlock": -13,
+      "onHit": "launch",
+      "onCounter": "launch",
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "foot_R",
+          "radius": 0.1,
+          "length": 0.32
+        }
+      ],
+      "properties": [
+        "lowCrush"
+      ],
+      "crush": {
+        "lowCrush": [
+          9,
+          20
+        ],
+        "highCrush": null
+      },
+      "reaction": {
+        "hit": "launch",
+        "counter": "launch",
+        "airborne": "juggle_heavy"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_uf4"
+    },
+    {
+      "id": "ws4",
+      "input": "WS+4",
+      "hitLevel": [
+        "m"
+      ],
+      "damage": [
+        16
+      ],
+      "startup": 11,
+      "active": 2,
+      "recovery": 24,
+      "onBlock": -5,
+      "onHit": 8,
+      "onCounter": 8,
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "foot_R",
+          "radius": 0.09,
+          "length": 0.3
+        }
+      ],
+      "properties": [],
+      "reaction": {
+        "hit": "stagger_mid",
+        "counter": "stagger_mid",
+        "airborne": "juggle_light"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_ws4"
+    },
+    {
+      "id": "ss2",
+      "input": "SS+2",
+      "hitLevel": [
+        "m"
+      ],
+      "damage": [
+        20
+      ],
+      "startup": 16,
+      "active": 3,
+      "recovery": 28,
+      "onBlock": -9,
+      "onHit": 5,
+      "onCounter": "knockdown",
+      "tracking": "homing",
+      "hitbox": [
+        {
+          "bone": "hand_R",
+          "radius": 0.1,
+          "length": 0.28
+        }
+      ],
+      "properties": [
+        "homing"
+      ],
+      "reaction": {
+        "hit": "stagger_mid",
+        "counter": "knockdown",
+        "airborne": "juggle_heavy"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_ss2"
+    },
+    {
+      "id": "throw_l",
+      "input": "1+3",
+      "hitLevel": [
+        "t"
+      ],
+      "damage": [
+        35
+      ],
+      "startup": 12,
+      "active": 3,
+      "recovery": 30,
+      "onBlock": null,
+      "onHit": "knockdown",
+      "onCounter": "knockdown",
+      "tracking": "homing",
+      "hitbox": [
+        {
+          "bone": "chest",
+          "radius": 0.2,
+          "length": 0.3
+        }
+      ],
+      "properties": [],
+      "throwBreak": "1",
+      "reaction": {
+        "hit": "throw_kang_l",
+        "counter": "throw_kang_l",
+        "airborne": null
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_throw_l"
+    },
+    {
+      "id": "heat_burst",
+      "input": "2+3",
+      "hitLevel": [
+        "m"
+      ],
+      "damage": [
+        12
+      ],
+      "startup": 16,
+      "active": 3,
+      "recovery": 30,
+      "onBlock": 1,
+      "onHit": 1,
+      "onCounter": 1,
+      "tracking": "homing",
+      "hitbox": [
+        {
+          "bone": "chest",
+          "radius": 0.25,
+          "length": 0.4
+        }
+      ],
+      "properties": [
+        "heatBurst",
+        "powerCrush"
+      ],
+      "armor": [
+        1,
+        15
+      ],
+      "heatDurationSec": 10,
+      "reaction": {
+        "hit": "heat_burst_hit",
+        "counter": "heat_burst_hit",
+        "airborne": "juggle_heavy"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "common_heat_burst"
+    },
+    {
+      "id": "rage_art",
+      "input": "R.df+1+2",
+      "hitLevel": [
+        "m",
+        "t"
+      ],
+      "damage": [
+        55
+      ],
+      "startup": 20,
+      "active": 3,
+      "recovery": 40,
+      "onBlock": -15,
+      "onHit": "knockdown",
+      "onCounter": "knockdown",
+      "tracking": "linear",
+      "hitbox": [
+        {
+          "bone": "hand_R",
+          "radius": 0.12,
+          "length": 0.3
+        }
+      ],
+      "properties": [
+        "rageArt",
+        "powerCrush"
+      ],
+      "armor": [
+        8,
+        19
+      ],
+      "damageScaleMax": 82,
+      "reaction": {
+        "hit": "rage_art_cinematic",
+        "counter": "rage_art_cinematic",
+        "airborne": "rage_art_cinematic"
+      },
+      "cancelWindow": null,
+      "next": [],
+      "anim": "kang_rage_art"
+    }
+  ],
+  "combos": [
+    {
+      "name": "Basic launcher",
+      "notation": "uf+4, 1, 1,2, df+1 (finalize after juggle tuning in step 6)",
+      "expectedDamage": null
+    }
+  ]
+}

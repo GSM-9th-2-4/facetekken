@@ -1,0 +1,86 @@
+/* Design tokens — docs/DESIGN.md §1. Fonts are added locally in step 6/9 (public/fonts). */
+:root {
+  --bg-0: #07080c;
+  --bg-1: #11131b;
+  --bg-2: #1b1f2b;
+  --steel: #8a93a6;
+  --text: #f2f4f8;
+  --health: #ffd23f;
+  --health-recover: #f5f5f5;
+  --damage-ghost: #ff6b35;
+  --rage: #ff2a3d;
+  --heat: #b04bff;
+  --heat-glow: #ff4bd8;
+  --p1: #2f8cff;
+  --p2: #ff3b5c;
+  --counter: #ff3b30;
+  --punish: #ffb000;
+  --spark-mid: #ffe066;
+  --spark-low: #4dd2ff;
+  --guard: #9fd8ff;
+  --chamfer: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  --font-display: 'Anton', 'Impact', sans-serif;
+  --font-heading: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-number: 'Chakra Petch', ui-monospace, monospace;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+#game {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#ui > * {
+  pointer-events: auto;
+}
+
+.debug-overlay {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  margin: 0;
+  padding: 10px 14px;
+  background: rgb(7 8 12 / 0.8);
+  border-left: 3px solid var(--heat);
+  font-family: var(--font-number);
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.hint {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+  font-size: 13px;
+  pointer-events: none;
+}

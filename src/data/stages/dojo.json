@@ -1,0 +1,16 @@
+{
+  "id": "dojo",
+  "name": "Dojo",
+  "theme": { "ground": "#2a2f45", "sky": "#05060a", "fog": "#0c0e16", "light": "#9fb4ff" },
+  "infinite": true,
+  "areas": [
+    {
+      "id": "main",
+      "floor": { "width": 40, "depth": 40 },
+      "walls": [],
+      "floorBreak": null,
+      "spawn": { "p1": [-1.5, 0], "p2": [1.5, 0] }
+    }
+  ],
+  "scenery": []
+}

@@ -17,6 +17,11 @@ Harness ported from `GSM-9th-2-4/facekart` (same workflow, agents and hooks, ada
 
 Never stop halfway through a step to ask about small choices. Pick the option most consistent with `SPEC.md`, note it in the report, and continue. Ask only when the spec truly contradicts itself.
 
+## Design is owned by Codex
+
+Visual design (styles, fonts, screen shells in `src/ui/screens/`, `?ui=` preview) is built by Codex per `AGENTS.md` and `docs/CODEX_DESIGN_TASK.md`.
+When those shells exist, `ui-screens` **wires them to game data** (view-models, events, storage) and keeps their look; don't restyle them. If they don't exist yet when a step needs a screen, build a minimal functional version and leave styling to Codex.
+
 ## Subagents
 
 | Agent | Owns |

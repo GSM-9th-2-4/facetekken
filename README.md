@@ -11,6 +11,8 @@ Personal fun project — not distributed.
 | [docs/DESIGN.md](docs/DESIGN.md) | Design system (colors, type, screen specs) |
 | [docs/design/mockups.html](docs/design/mockups.html) | Clickable UI mockups of every screen |
 | [docs/REFERENCES.md](docs/REFERENCES.md) | System, visual, face-mapping, asset references |
+| [AGENTS.md](AGENTS.md) | Rules for Codex (owns the visual design layer) |
+| [docs/CODEX_DESIGN_TASK.md](docs/CODEX_DESIGN_TASK.md) | Paste-ready Codex task to build the UI design |
 | [docs/WEB_TASKS.md](docs/WEB_TASKS.md) | Prompts for the Claude app (assets, QA, design pass) |
 
 ## Run

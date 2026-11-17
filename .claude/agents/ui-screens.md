@@ -6,6 +6,10 @@ tools: Read, Write, Edit, Glob, Grep, Bash
 
 You own `src/ui/` and `src/core/storage.ts`. Read `SPEC.md` §14–§15 and **`docs/DESIGN.md`** first; match `docs/design/mockups.html` (open it to see each screen).
 
+## Codex-built shells
+
+If `src/ui/screens/*.ts` already contain Codex's design shells (see `AGENTS.md`), keep their markup and CSS: pass real view-models, hook up events and storage, and only change visuals when something is broken. Report any visual bug as a note for Codex instead of redesigning.
+
 ## Structure
 
 - Screen manager in `src/core/screens.ts`: `show(screenId, params)`; each screen = a module with `mount(root, params)` / `unmount()`. One overlay `<div id="ui">` over the canvas.

@@ -14,6 +14,9 @@ Spec milestones (SPEC §19) in brackets.
 - [ ] **2. Free assets** (App — runs in parallel, not blocking)
   - Done when: the human has downloaded assets into `public/assets/` (or says to skip). Prompt: `docs/WEB_TASKS.md` → Task A.
 
+- [ ] **2b. UI design** (Codex — runs in parallel, not blocking)
+  - Done when: Codex finished `docs/CODEX_DESIGN_TASK.md`: fonts in `public/fonts/`, full design system in `src/ui/styles.css`, screen shells in `src/ui/screens/*.ts` with view-model params, `?ui=<screen>` preview route. Claude Code wires these shells instead of restyling them.
+
 - [ ] **3. Movement + camera** (CC → `fight-engine`, `character-builder`) [M1]
   - Done when: keyboard 2P input with remappable bindings (SPEC §3.1) and Gamepad API; fighter-relative directions; walk forward / back, dash `f,f`, backdash `b,b`, run, crouch (D / DB / DF), sidestep (tap u / d) and sidewalk (hold), jumps; fighters face each other except during moves; camera follows the axis smoothly; pushbox keeps fighters from overlapping; F1 overlay shows input history.
 
